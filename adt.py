@@ -40,12 +40,12 @@ class RegionPower:
                 rotation of the roof to the south (azimuth);
                 roof_size: size of the roof."""
         self.region = None
-        self.koefficient = coefficient
+        self.coefficient = coefficient
         self.roof_size = roof_size
         self.place = None
 
     def set_region(self, region: Region) -> None:
-        """Sets the region value."""
+        """Sets the region value"""
         self.region = region
 
     def change_size(self, new_size: float) -> None:
@@ -57,8 +57,8 @@ class RegionPower:
         return self.region
 
     def get_power(self, month="Річний") -> float:
-        """Calculates and returns solar powor of region. Annual value by default."""
-        power = self.koefficient * self.roof_size * self.region.get_insolation(month)
+        """Calculates and returns """
+        power = self.coefficient * self.roof_size * self.region.get_insolation(month)
         return round(power, 1)
 
     def top_power(self, month="Річний") -> str:
@@ -66,7 +66,7 @@ class RegionPower:
         regions = list(soup_to_dict().keys())
         result = dict()
         for el in regions:
-            new_region = RegionPower(self.koefficient, self.roof_size)
+            new_region = RegionPower(self.coefficient, self.roof_size)
             new_region.set_region(Region(el))
             power = new_region.get_power(month)
             result[el] = power
