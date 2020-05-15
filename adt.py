@@ -45,7 +45,7 @@ class RegionPower:
         self.place = None
 
     def set_region(self, region: Region) -> None:
-        """Sets the region value"""
+        """Sets the region value."""
         self.region = region
 
     def change_size(self, new_size: float) -> None:
@@ -57,7 +57,7 @@ class RegionPower:
         return self.region
 
     def get_power(self, month="Річний") -> float:
-        """Calculates and returns """
+        """Calculates and returns solar powor of region. Annual value by default."""
         power = self.koefficient * self.roof_size * self.region.get_insolation(month)
         return round(power, 1)
 
