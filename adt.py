@@ -54,7 +54,7 @@ class RegionPower:
 
     def get_power(self, month="Річний") -> float:
         """Calculates and returns """
-        power = self.koefficient * self.roof_size * self.region.get_insolation(month)
+        power = self.coefficient * self.roof_size * self.region.get_insolation(month)
         return round(power, 1)
 
     def top_power(self, month="Річний") -> str:
@@ -62,7 +62,7 @@ class RegionPower:
         regions = list(soup_to_dict().keys())
         result = dict()
         for el in regions:
-            new_region = RegionPower(self.koefficient, self.roof_size)
+            new_region = RegionPower(self.coefficient, self.roof_size)
             new_region.set_region(Region(el))
             power = new_region.get_power(month)
             result[el] = power
@@ -101,6 +101,3 @@ if __name__ == "__main__":
     r = RegionPower(0.7, 10)
     r.set_region(Region("Кропивницький"))
     print(r)
-
-
-
