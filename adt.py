@@ -1,5 +1,5 @@
-from soup import soup_to_dict
-from wind import df_to_dict
+import soup
+import wind
 
 
 class Region:
@@ -10,8 +10,8 @@ class Region:
         region: name of ukrainian region."""
         self.region = region
         try:
-            self.insolation = soup_to_dict()[region]
-            self.wind = df_to_dict()[region]
+            self.insolation = soup.soup_to_dict()[region]
+            self.wind = wind.df_to_dict()[region]
         except KeyError:
             raise InvalidRegion("There is no such a region in Ukraine.")
 
@@ -28,6 +28,14 @@ class Region:
     def __str__(self):
         """Constructor method, represents region as string."""
         return self.region
+    
+    @staticmethod
+    def wind_plot(month="Річний"):
+        wind.plot(month)
+
+    @staticmethod
+    def insolation_plot(month="Річний"):
+        wind.plot(month)
 
 
 class RegionPower:
