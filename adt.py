@@ -28,7 +28,7 @@ class Region:
     def __str__(self):
         """Constructor method, represents region as string."""
         return self.region
-    
+
     @staticmethod
     def wind_plot(month="Річний"):
         wind.plot(month)
@@ -44,7 +44,8 @@ class RegionPower:
     def __init__(self, coefficient, roof_size):
         """Constructor method, initializes attributes:
                 region: ukrainian region, Region object;
-                coefficient: coefficient of the angle of inclination of the roof to the horizon and the angle of
+                coefficient: coefficient of the angle of inclination of the
+                roof to the horizon and the angle of
                 rotation of the roof to the south (azimuth);
                 roof_size: size of the roof."""
         self.region = None
@@ -66,12 +67,13 @@ class RegionPower:
 
     def get_power(self, month="Річний") -> float:
         """Calculates and returns """
-        power = self.coefficient * self.roof_size * self.region.get_insolation(month)
+        ins = self.region.get_insolation(month)
+        power = self.coefficient * self.roof_size * ins
         return round(power, 1)
 
     def top_power(self, month="Річний") -> str:
         """Creates top of regions of country by solar power. Returns string."""
-        regions = list(soup_to_dict().keys())
+        regions = list(soup.soup_to_dict().keys())
         result = dict()
         for el in regions:
             new_region = RegionPower(self.coefficient, self.roof_size)
@@ -79,7 +81,8 @@ class RegionPower:
             power = new_region.get_power(month)
             result[el] = power
 
-        sorted_dict = {k: v for k, v in sorted(result.items(), key=lambda item: item[1])}
+        sorted_dict = {k: v for k, v in sorted(result.items(),
+                                               key=lambda item: item[1])}
         key_list = list(sorted_dict.keys())
         values_list = list(sorted_dict.values())
         size = len(key_list)
@@ -88,7 +91,8 @@ class RegionPower:
         top = ""
         for ix in range(size):
             top += f"{ix + 1}. {key_list[size - ix - 1]}:" \
-                   f"{round(values_list[size - ix - 1], 1)}{' <- Ваш регіон ' if ix == self.place - 1 else ''}\n "
+                   f"{round(values_list[size - ix - 1], 1)}" \
+                   f"{' <- Ваш регіон ' if ix == self.place - 1 else ''}\n "
         return top
 
     def get_wind(self, month="Річний") -> float:
@@ -96,21 +100,29 @@ class RegionPower:
         return self.region.get_wind_speed(month)
 
     def grater_power(self, other_region, month="Річний") -> bool:
-        """Returns True if region has grater solar power then other_region, else False."""
-        return True if self.get_power(month) > other_region.get_power(month) else False
+        """Returns True if region has grater
+        solar power then other_region, else False."""
+        return True if self.get_power(month) > \
+                       other_region.get_power(month) else False
 
     def __str__(self):
         """Constructor method, represents RegionPower object as string."""
-        return f"Ви обрали область, обласний центр якої: {str(self.region)}\nЗа обраний Вами період часу, дана " \
+        return f"Ви обрали область, обласний центр якої: " \
+               f"{str(self.region)}\nЗа обраний Вами період часу, дана " \
                f"система могла би отримати від сонячного випромінювання " \
-               f"{str(self.get_power())} МВт*год\nТакож на ефективність системи впливатиме вітер, тому пропонуємо " \
-               f"розглянути Вам середньомісячну(річну) швидкість вітру в обраному Вами регіоні: " \
-               f"{str(self.get_wind())} м/c\nДля кращого розуміння перспектив Вашого регіону просимо проаналізувати, " \
-               f"яка кількість сонячного випромінювання була би отримана за умов Вашого будинку в інших областях " \
+               f"{str(self.get_power())} МВт*год\nТакож на" \
+               f" ефективність системи впливатиме вітер, тому пропонуємо " \
+               f"розглянути Вам середньомісячну(річну)" \
+               f" швидкість вітру в обраному Вами регіоні: " \
+               f"{str(self.get_wind())} м/c\nДля кращого розуміння" \
+               f" перспектив Вашого регіону просимо проаналізувати, " \
+               f"яка кількість сонячного випромінювання була би отримана" \
+               f" за умов Вашого будинку в інших областях " \
                f"України (один. виміру: МВТ*год)\n{self.top_power()}"
 
 
 class InvalidRegion(Exception):
+    """Raises if region is not valid Region object."""
     pass
 
 
@@ -119,3 +131,5 @@ if __name__ == "__main__":
     r = RegionPower(0.7, 10)
     r.set_region(Region("Кропивницький"))
     print(r)
+    Region("Кропивницький").insolation_plot(1)
+
