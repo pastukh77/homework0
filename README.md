@@ -19,5 +19,19 @@ This program will provide the user with the following information (for the selec
 - comparative aspects of the regions of Ukraine about the prospects of such a system;
 - graphs of average wind speed in the regions of Ukraine.
 
-
 More information about the project is available on the [Wiki](https://github.com/pastukh77/homework0/wiki) pages
+
+## Required modules to install:
+- pip install bs4
+- pip install urllib
+- pip install seaborn
+- pip install matplotlib
+- pip install flask
+- pip install opencage
+- pip install folium
+- pip install json
+
+## Modules:
+
+
+The class diagram can be seen [here](https://github.com/pastukh77/homework0/blob/master/ADT_diagram.jpg)
