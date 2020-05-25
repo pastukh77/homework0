@@ -4,7 +4,7 @@
 
 The system of estimation of parameters of a roof will allow the user to count the prospects of the location. Using the information on the average insolation and wind speed in a particular region and roof square, the program will provide the user with quantitative advice on the prospects of introducing this system of ventilation and heating of the room on his roof.
 
-The result of the project was this web application, which is hosted on the address http://shepherdy.pythonanywhere.com/. Using which, the user with the help of three stages gets the information he needs. The user can get a map or report avout calculations of region power.
+The result of the project was this web application, which is hosted on the [address] (http://shepherdy.pythonanywhere.com/). Using which, the user with the help of three stages gets the information he needs. The user can get a map or report avout calculations of region power.
 
 ![Знімок екрана 2020-05-25 о 15 02 17](https://user-images.githubusercontent.com/60693273/82811479-895d4f00-9e99-11ea-872d-8cc96173c0cb.png)
 
