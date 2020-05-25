@@ -25,7 +25,7 @@ def main_f(size, k, month, region):
         reg = Region(ukr_cities[city])
         regPow = RegionPower(k, size)
         regPow.set_region(reg)
-        path = f"/Users/yaroslav/Desktop/sun_prospects/ukraine_geojson-master/{cities[city]}.json"
+        path = f"your_path/{cities[city]}.json"
         geojson = folium.GeoJson(json.load(open(path, encoding='UTF-8')))
         popup = folium.Popup(f"{regPow.get_power(month)} кВт*год/день")
         popup.add_to(geojson)
@@ -33,7 +33,7 @@ def main_f(size, k, month, region):
 
         ix += 1
 
-    my_map.save('/Users/yaroslav/Desktop/sun_prospects/templates/my_map.html')
+    my_map.save('your_path/templates/my_map.html')
 
 
 if __name__ == "__main__":
