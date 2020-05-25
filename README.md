@@ -48,3 +48,5 @@ More information about the project is available on the [Wiki](https://github.com
 
 
 The class diagram can be seen [here](https://github.com/pastukh77/homework0/blob/master/ADT_diagram.jpg)
+
+Tap [here](https://youtu.be/ihny033RMCM) to see a short video presentation
