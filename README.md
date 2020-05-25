@@ -1,5 +1,5 @@
 # Estimation of parameters of heating of a roof by solar energy.
-![2020-05-25 09 50 33](https://user-images.githubusercontent.com/60693273/82786534-7e8cc500-9e6d-11ea-8fdd-ece8e73ea05c.jpg)
+![IMG_5562](https://user-images.githubusercontent.com/60693273/82786946-2904e800-9e6e-11ea-9ed7-dc08732474c2.JPG)
 ## What does our program do?
 
 The system of estimation of parameters of a roof will allow the user to count the prospects of the location. Using the information on the average insolation and wind speed in a particular region and roof square, the program will provide the user with quantitative advice on the prospects of introducing this system of ventilation and heating of the room on his roof.
