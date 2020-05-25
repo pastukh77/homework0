@@ -35,7 +35,7 @@ class Region:
 
     @staticmethod
     def insolation_plot(month="Річний"):
-        wind.plot(month)
+        soup.plot(month)
 
 
 class RegionPower:
@@ -90,7 +90,7 @@ class RegionPower:
         self.place = size - key_list.index(str(self.region))
         top = ""
         for ix in range(size):
-            top += f"{ix + 1}. {key_list[size - ix - 1]}:" \
+            top += f"{ix + 1}. {key_list[size - ix - 1]}: " \
                    f"{round(values_list[size - ix - 1], 1)}" \
                    f"{' <- Ваш регіон ' if ix == self.place - 1 else ''}\n "
         return top
@@ -110,7 +110,7 @@ class RegionPower:
         return f"Ви обрали область, обласний центр якої: " \
                f"{str(self.region)}\nЗа обраний Вами період часу, дана " \
                f"система могла би отримати від сонячного випромінювання " \
-               f"{str(self.get_power())} кВт*год/день\nТакож на" \
+               f"{str(self.get_power())} МВт*год\nТакож на" \
                f" ефективність системи впливатиме вітер, тому пропонуємо " \
                f"розглянути Вам середньомісячну(річну)" \
                f" швидкість вітру в обраному Вами регіоні: " \
@@ -119,6 +119,25 @@ class RegionPower:
                f"яка кількість сонячного випромінювання була би отримана" \
                f" за умов Вашого будинку в інших областях " \
                f"України (один. виміру: МВТ*год)\n{self.top_power()}"
+
+    def get_html(self, month="Річний"):
+        """Writes html of result to file"""
+        lst = str(self).split("\n")
+        Region.insolation_plot(month)
+        Region.wind_plot(month)
+        res = """<html><body><meta charset="utf-8">
+        <image src="../static/images/insolation.png" style="position: absolute; right: 100px; top: 200px">
+        <image src="../static/images/wind.png" style="position: absolute; right: 100px; top: 600px">"""
+        for element in lst:
+            res += f"""<p>{element}</p>
+                    """
+        res += """
+        </body>
+        </html>"""
+
+        path = "your_path/templates/result.html"
+        file = open(path, "w", encoding="utf-8")
+        file.write(res)
 
 
 class InvalidRegion(Exception):
@@ -132,4 +151,3 @@ if __name__ == "__main__":
     r.set_region(Region("Кропивницький"))
     print(r)
     Region("Кропивницький").insolation_plot(1)
-
