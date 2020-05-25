@@ -28,7 +28,6 @@ More information about the project is available on the [Wiki](https://github.com
 - pip install seaborn
 - pip install matplotlib
 - pip install flask
-- pip install opencage
 - pip install folium
 - pip install json
 
