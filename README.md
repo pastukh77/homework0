@@ -37,5 +37,14 @@ More information about the project is available on the [Wiki](https://github.com
 
 ## Modules:
 
+* soup.py - module that uses bs4 (BeautifulSoup) to scrape data (monthly level of insolation) from internet resource, pandas seaborn, matplotlib to vizualize data;
+* wind.py - module that uses pandas to get data from wind_Ukraine.tsv file. Also seborn and matplotlib to vizualize;
+* adt.py - module for realizing Region, RegionPower ADT. Makes main calculations, creates representing for str and html;
+* main.py - main module to draw a map using folium;
+* flask_app.py - module to realize GET and POST methods, redirecting, using flask;
+* menu.html - web page for taking all data from user and post it to flas_app.py;
+* my_map.html - map, that creates using folium;
+* result.html - web page for getting analysis.
+
 
 The class diagram can be seen [here](https://github.com/pastukh77/homework0/blob/master/ADT_diagram.jpg)
