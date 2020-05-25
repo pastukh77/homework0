@@ -1,5 +1,8 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
+import pandas as pd
+import seaborn as sns
+from matplotlib import pyplot as plt
 
 
 def url_to_soup():
@@ -43,6 +46,22 @@ def soup_to_dict():
     return regions_dict
 
 
+def plot(month="Річний"):
+    """Draws a plot of chosen month from the lowest value to rhe highest."""
+    region_dict = soup_to_dict()
+    df = pd.DataFrame(columns=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "Річний"], index=list(region_dict.keys()))
+
+    for ix in range(len(region_dict)):
+        df.loc[list(region_dict.keys())[ix]] = pd.Series(region_dict[list(region_dict.keys())[ix]])
+    new_df = df.sort_values(month)
+
+    sns.barplot(x=new_df[month], y=new_df.index).set_title("Порівняльна характеристика інсоляції в регіонах України")
+    plt.xlabel("Середня значення інсоляції, кВт*год/день")
+    plt.ylabel("Регіони")
+    plt.savefig('your_path/static/images/insolation.png')
+    plt.show()
+
+
 def represent():
     """Represents the dictionary of regions got by soup_to_dict() method."""
     regions_dict = soup_to_dict()
@@ -56,4 +75,6 @@ def represent():
 
 
 if __name__ == "__main__":
+    print(soup_to_dict())
     represent()
+    plot()
